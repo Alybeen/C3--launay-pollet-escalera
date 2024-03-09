@@ -1,6 +1,8 @@
 class TournamentGenerator {
-  constructor(teams) {
+  constructor(name, type, teams) {
       this.teams = teams; // Chaque équipe est un objet { name: string, players: array }
+      this.name = name;
+      this.type = type;
       this.poules = [];
       this.finalStages = []; // Les phases finales
   }

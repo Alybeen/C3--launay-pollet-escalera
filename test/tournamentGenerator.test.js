@@ -18,7 +18,7 @@ describe('Création de Tournoi', () => {
             // Vérifier les paramètres de base du tournoi
             expect(tournament.name).to.equal(tournamentName);
             expect(tournament.type).to.equal(tournamentType);
-            expect(tournament.participants).to.deep.equal(teams);
+            expect(tournament.teams).to.deep.equal(teams);
             expect(finalStages).to.be.an('array').that.is.not.empty;
         });
 });
