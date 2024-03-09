@@ -26,19 +26,23 @@ class TournamentGenerator {
   }
 
 
-  generateFinalStages() {
-      let currentStage = this.finalStages[0];
-      while (currentStage.length > 1) {
-          let nextStage = [];
-          for (let i = 0; i < currentStage.length; i += 2) {
-              let winner = currentStage[i + (Math.random() > 0.5 ? 0 : 1)];
-              nextStage.push(winner);
-          }
-          this.finalStages.push(nextStage);
-          currentStage = nextStage;
-      }
-      console.log("Phases finales :", this.finalStages);
-  }
+    generateFinalStages() {
+        if (this.finalStages.length > 0) {
+            let currentStage = this.finalStages[0];
+            while (currentStage.length > 1) {
+                let nextStage = [];
+                for (let i = 0; i < currentStage.length; i += 2) {
+                    let winner = currentStage[i + (Math.random() > 0.5 ? 0 : 1)];
+                    nextStage.push(winner);
+                }
+                this.finalStages.push(nextStage);
+                currentStage = nextStage;
+            }
+            console.log("Phases finales :", this.finalStages);
+        } else {
+            console.log("Aucune équipe qualifiée pour les phases finales.");
+        }
+    }
 
   generateTournament() {
       this.generatePoules();
