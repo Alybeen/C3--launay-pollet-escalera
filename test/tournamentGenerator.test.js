@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import TournamentGenerator from '../src/TournamentGenerator.js';
+import TournamentGenerator from '../src/tournamentGenerator.js';
 import TeamGenerator from "../src/teamGenerator.js";
 
 describe('Création de Tournoi', () => {
@@ -21,4 +21,16 @@ describe('Création de Tournoi', () => {
             expect(tournament.teams).to.deep.equal(teams);
             expect(finalStages).to.be.an('array').that.is.not.empty;
         });
+});
+
+describe('Génération des Poules', () => {
+    it('Devrait retourner un tableau vide si moins de 4 équipes sont fournies', () => {
+        const teams = [
+            { name: 'Équipe 1', players: ['Joueur 1', 'Joueur 2', 'Joueur 3', 'Joueur 4'] },
+            { name: 'Équipe 2', players: ['Joueur 5', 'Joueur 6', 'Joueur 7', 'Joueur 8'] },
+        ];
+        const tournamentGenerator = new TournamentGenerator('Nom du Tournoi', 'Type du Tournoi', teams);
+        tournamentGenerator.generatePoules();
+        expect(tournamentGenerator.poules).to.be.an('array').that.is.empty;
+    });
 });
