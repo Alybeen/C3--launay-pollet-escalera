@@ -34,3 +34,16 @@ describe('Génération des Poules', () => {
         expect(tournamentGenerator.poules).to.be.an('array').that.is.empty;
     });
 });
+
+describe('Génération des Phases Finales', () => {
+    it('Devrait retourner un tableau vide si aucune équipe n\'est qualifiée pour la phase finale', () => {
+        const teams = [
+            { name: 'Équipe 1', players: ['Joueur 1', 'Joueur 2', 'Joueur 3', 'Joueur 4'] },
+            { name: 'Équipe 2', players: ['Joueur 5', 'Joueur 6', 'Joueur 7', 'Joueur 8'] },
+        ];
+        const tournamentGenerator = new TournamentGenerator('Nom du Tournoi', 'Type du Tournoi', teams);
+        tournamentGenerator.generatePoules();
+        tournamentGenerator.simulatePoulesMatches();
+        expect(tournamentGenerator.finalStages).to.deep.equal([[]]);
+    });
+});
