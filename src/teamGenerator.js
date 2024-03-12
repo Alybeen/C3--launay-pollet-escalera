@@ -12,6 +12,7 @@ class TeamGenerator {
     if (!this.validatePlayersPerTeam(playersPerTeam)) {
       throw new Error("Le paramètre entré n'est pas valide");
     }
+    this.playersPerTeam = playersPerTeam;
   }
   isPlayersCountDivisible(nb_players, playersPerTeam) {
 
