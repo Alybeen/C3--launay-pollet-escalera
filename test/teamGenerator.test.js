@@ -26,14 +26,14 @@ describe('Création d\'une équipe', () => {
         expect(firstTeam).to.have.property('players').that.is.an('array').that.is.not.empty;
     });
 
-    //test tdd -> test if each team has an equal numbers of players
+    //test tdd -> test if each team can have an equal numbers of players
     it('vérifie que le nombre de joueurs suffit à créer des équipes avec un nombre de joueurs équivalent', () => {
 
         players = ['Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6', 'Player7'];
         const expectedErrorMessage = "le nombre de joueurs rentrés n'est pas bon";
 
         const generator = new TeamGenerator(players);
-        generator.generateTeams();
+        generator.generateTeams()
 
         const teams = generator.getTeams();
 
