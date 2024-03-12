@@ -2,6 +2,7 @@ class TournamentGenerator {
     constructor(name, type, teams) {
         this.validateTeamNames(teams);
         this.validateName(name);
+        this.validateType(type);
         this.teams = teams; // Chaque équipe est un objet { name: string, players: array }
         this.name = name;
         this.type = type;
@@ -20,6 +21,12 @@ class TournamentGenerator {
     validateName(name) {
         if (typeof name !== 'string') {
             throw new Error('Le nom du tournoi doit être une chaîne de caractères');
+        }
+    }
+
+    validateType(type) {
+        if (typeof type !== 'string') {
+            throw new Error('Le type du tournoi doit être une chaîne de caractères');
         }
     }
 
