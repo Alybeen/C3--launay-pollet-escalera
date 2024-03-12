@@ -7,7 +7,13 @@ class TeamGenerator {
       return false
     }
   }
+  validateTypeOfPlayers(players) {
+    if(!Array.isArray(players) || players.length===0) {
+      throw new Error("Le paramètre entré n'est pas valide");
+    }
+  }
   constructor(players, playersPerTeam = 3) {
+    this.players= this.validateTypeOfPlayers(players)
     this.players = players;
     this.teams = [];
     if (!this.validatePlayersPerTeam(playersPerTeam)) {
