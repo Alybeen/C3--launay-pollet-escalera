@@ -1,12 +1,20 @@
 class TournamentGenerator {
-  constructor(name, type, teams) {
-      this.teams = teams; // Chaque équipe est un objet { name: string, players: array }
-      this.name = name;
-      this.type = type;
-      this.poules = [];
-      this.finalStages = []; // Les phases finales
-  }
+    constructor(name, type, teams) {
+        this.validateTeamNames(teams);
+        this.teams = teams; // Chaque équipe est un objet { name: string, players: array }
+        this.name = name;
+        this.type = type;
+        this.poules = [];
+        this.finalStages = []; // Les phases finales
+    }
 
+    validateTeamNames(teams) {
+        teams.forEach(team => {
+            if (typeof team.name !== 'string') {
+                throw new Error('Le nom de l\'équipe doit être une chaîne de caractères');
+            }
+        });
+    }
 
   generatePoules() {
       let shuffledTeams = [...this.teams].sort(() => 0.5 - Math.random());
