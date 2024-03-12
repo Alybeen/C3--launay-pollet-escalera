@@ -59,3 +59,13 @@ describe('Calcul du nombre total de joueurs', () => {
         expect(totalPlayers).is.equal(8);
     });
 });
+
+describe('Validation du type des noms d\'équipes', () => {
+    it('Devrait rejeter si le nom d\'équipe n\'est pas une chaîne de caractères', () => {
+        // Arrange
+        const invalidTeam = { name: 123, players: ['Joueur 1'] };
+
+        // Act & Assert
+        expect(() => new TournamentGenerator('Nom du Tournoi', 'Type du Tournoi', [invalidTeam])).to.throw('Le nom de l\'équipe doit être une chaîne de caractères');
+    });
+});
