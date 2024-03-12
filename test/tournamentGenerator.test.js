@@ -80,3 +80,14 @@ describe('Validation du type du nom du tournoi', () => {
         expect(() => new TournamentGenerator(invalidTournamentName, 'Type du Tournoi', teams)).to.throw('Le nom du tournoi doit être une chaîne de caractères');
     });
 });
+
+describe('Validation du type de tournoi', () => {
+    it('Devrait rejeter si le type du tournoi n\'est pas une chaîne de caractères', () => {
+        const teams = [
+            { name: 'Équipe 1', players: ['Joueur 1', 'Joueur 2', 'Joueur 3', 'Joueur 4'] },
+            { name: 'Équipe 2', players: ['Joueur 5', 'Joueur 6', 'Joueur 7', 'Joueur 8'] },
+        ];
+        const invalidTournamentType = 123;
+        expect(() => new TournamentGenerator('Nom du Tournoi', invalidTournamentType, teams)).to.throw('Le type du tournoi doit être une chaîne de caractères');
+    });
+});
