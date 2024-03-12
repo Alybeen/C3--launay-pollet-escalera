@@ -1,6 +1,7 @@
 class TournamentGenerator {
     constructor(name, type, teams) {
         this.validateTeamNames(teams);
+        this.validateName(name);
         this.teams = teams; // Chaque équipe est un objet { name: string, players: array }
         this.name = name;
         this.type = type;
@@ -14,6 +15,12 @@ class TournamentGenerator {
                 throw new Error('Le nom de l\'équipe doit être une chaîne de caractères');
             }
         });
+    }
+
+    validateName(name) {
+        if (typeof name !== 'string') {
+            throw new Error('Le nom du tournoi doit être une chaîne de caractères');
+        }
     }
 
   generatePoules() {
