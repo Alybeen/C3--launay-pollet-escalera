@@ -50,4 +50,10 @@ describe('Création d\'une équipe', () => {
         expect(() => new TeamGenerator(players, "chaussette")).to.throw("Le paramètre entré n'est pas valide");
     });
 
+    it('Vérifie que le nombre de joueurs est de type array', () => {
+        players = 'player1, player2, player3';
+        expect(() => new TeamGenerator(players, 3)).to.throw("Le paramètre entré n'est pas valide");
+
+    })
+
 })
