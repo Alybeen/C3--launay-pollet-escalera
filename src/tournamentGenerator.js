@@ -1,12 +1,34 @@
 class TournamentGenerator {
-  constructor(name, type, teams) {
-      this.teams = teams; // Chaque équipe est un objet { name: string, players: array }
-      this.name = name;
-      this.type = type;
-      this.poules = [];
-      this.finalStages = []; // Les phases finales
-  }
+    constructor(name, type, teams) {
+        this.validateTeamNames(teams);
+        this.validateName(name);
+        this.validateType(type);
+        this.teams = teams; // Chaque équipe est un objet { name: string, players: array }
+        this.name = name;
+        this.type = type;
+        this.poules = [];
+        this.finalStages = []; // Les phases finales
+    }
 
+    validateTeamNames(teams) {
+        teams.forEach(team => {
+            if (typeof team.name !== 'string') {
+                throw new Error('Le nom de l\'équipe doit être une chaîne de caractères');
+            }
+        });
+    }
+
+    validateName(name) {
+        if (typeof name !== 'string') {
+            throw new Error('Le nom du tournoi doit être une chaîne de caractères');
+        }
+    }
+
+    validateType(type) {
+        if (typeof type !== 'string') {
+            throw new Error('Le type du tournoi doit être une chaîne de caractères');
+        }
+    }
 
   generatePoules() {
       let shuffledTeams = [...this.teams].sort(() => 0.5 - Math.random());
@@ -44,6 +66,14 @@ class TournamentGenerator {
         } else {
             console.log("Aucune équipe qualifiée pour les phases finales.");
         }
+    }
+
+    getTotalPlayers() {
+        let totalPlayers = 0;
+        this.teams.forEach(team => {
+            totalPlayers += team.players.length;
+        });
+        return totalPlayers;
     }
 
   generateTournament() {
