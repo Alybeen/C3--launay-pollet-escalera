@@ -4,14 +4,18 @@ class TeamGenerator {
     this.playersPerTeam = playersPerTeam;
     this.teams = [];
   }
-  isPlayersCountDivisible(players, teamsCount) {
-    return playersCount % teamsCount === 0;
+  isPlayersCountDivisible(nb_players, playersPerTeam) {
+
+    if(nb_players % playersPerTeam === 0) {
+      return true;
+    }
+    return false;
   }
 
   generateTeams() {
     let shuffledPlayers = [...this.players].sort(() => 0.5 - Math.random()); // Mélange aléatoire des joueurs
     let teamIndex = 0;
-    if(isPlayersCountDivisible===0) {
+    if(this.isPlayersCountDivisible(shuffledPlayers.length, this.playersPerTeam)) {
       while (shuffledPlayers.length > 0) {
         let teamPlayers = shuffledPlayers.splice(0, this.playersPerTeam);
         let teamName = `Équipe ${teamIndex + 1}`;
@@ -23,7 +27,7 @@ class TeamGenerator {
         teamIndex++;
       }
     } else {
-      console.log("impossible de créer des équipes avec le même nombre de joueurs")
+      console.log("le nombre de joueurs rentrés n'est pas bon")
     }
   }
 

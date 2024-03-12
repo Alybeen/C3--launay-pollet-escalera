@@ -1,8 +1,11 @@
 import { expect } from 'chai';
 import TeamGenerator from "../src/teamGenerator.js";
+//library to spy console
+import sinon from 'sinon';
 
 describe('Création d\'une équipe', () => {
     let players;
+    const consoleLogSpy = sinon.spy(console, 'log');
 
     it('Création Simple : Vérification des paramètres de base', () => {
         players = ['Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6'];
@@ -24,21 +27,22 @@ describe('Création d\'une équipe', () => {
     });
 
     //test tdd -> test if each team has an equal numbers of players
-    it('check if each team has equal numbers of players ', () => {
+    it('vérifie que le nombre de joueurs suffit à créer des équipes avec un nombre de joueurs équivalent', () => {
 
         players = ['Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6', 'Player7'];
+        const expectedErrorMessage = "le nombre de joueurs rentrés n'est pas bon";
 
-        const generator = new TeamGenerator(players, 3);
+        const generator = new TeamGenerator(players);
         generator.generateTeams();
 
         const teams = generator.getTeams();
 
         expect(teams).to.be.an('array');
-        expect(teams).to.have.lengthOf(Math.ceil(players.length / 3));
+        expect(teams).to.be.an('array').that.is.empty;
+        expect(consoleLogSpy.calledOnce).to.be.true;
+        expect(consoleLogSpy.calledWith(expectedErrorMessage)).to.be.true;
 
-        teams.forEach(team => {
-            expect(team.players).to.be.an('array');
-            expect(team.players).to.have.lengthOf(3);
-        });
+        // restore console.log to its initial state
+        consoleLogSpy.restore();
     });
 })
