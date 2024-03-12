@@ -47,7 +47,7 @@ describe('Création d\'une équipe', () => {
 
     it('vérifie le type de valeur entrée pour le nombre de joueurs par équipe', () => {
         players = ['Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6'];
-        expect(() => new TeamGenerator(players,"chaussette").to.throw("Le paramètre entré n'est pas valide"));
+        expect(() => new TeamGenerator(players, "chaussette")).to.throw("Le paramètre entré n'est pas valide");
     });
 
 })

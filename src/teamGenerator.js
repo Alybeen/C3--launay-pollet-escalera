@@ -1,6 +1,7 @@
 class TeamGenerator {
   validatePlayersPerTeam(playersPerTeam) {
     if(Number.isInteger(playersPerTeam)) {
+      console.log("est un entier")
       return true
     } else {
       return false
@@ -11,8 +12,9 @@ class TeamGenerator {
     this.teams = [];
     if (!this.validatePlayersPerTeam(playersPerTeam)) {
       throw new Error("Le paramètre entré n'est pas valide");
+    } else {
+      this.playersPerTeam = playersPerTeam;
     }
-    this.playersPerTeam = playersPerTeam;
   }
   isPlayersCountDivisible(nb_players, playersPerTeam) {
 
