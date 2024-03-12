@@ -1,11 +1,16 @@
 class TeamGenerator {
-  validatePlayersPerTeam(playersPerTeam) {
-    if(!Number.isInteger(playersPerTeam)) {
-      throw new Error("Le paramètre entré n'est pas valide");
-  }
   validateTypeOfPlayers(players) {
     if(!Array.isArray(players) || players.length===0) {
       throw new Error("Le paramètre entré n'est pas valide");
+    } else {
+      return players
+    }
+  }
+  validatePlayersPerTeam(playersPerTeam) {
+    if(!Number.isInteger(playersPerTeam)) {
+      throw new Error("Le paramètre entré n'est pas valide");
+    } else {
+      return playersPerTeam
     }
   }
   constructor(players, playersPerTeam = 3) {
