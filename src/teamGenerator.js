@@ -1,11 +1,7 @@
 class TeamGenerator {
   validatePlayersPerTeam(playersPerTeam) {
-    if(Number.isInteger(playersPerTeam)) {
-      console.log("est un entier")
-      return true
-    } else {
-      return false
-    }
+    if(!Number.isInteger(playersPerTeam)) {
+      throw new Error("Le paramètre entré n'est pas valide");
   }
   validateTypeOfPlayers(players) {
     if(!Array.isArray(players) || players.length===0) {
@@ -16,11 +12,7 @@ class TeamGenerator {
     this.players= this.validateTypeOfPlayers(players)
     this.players = players;
     this.teams = [];
-    if (!this.validatePlayersPerTeam(playersPerTeam)) {
-      throw new Error("Le paramètre entré n'est pas valide");
-    } else {
-      this.playersPerTeam = playersPerTeam;
-    }
+    this.playersPerTeam = this.validatePlayersPerTeam(playersPerTeam);
   }
   isPlayersCountDivisible(nb_players, playersPerTeam) {
 
