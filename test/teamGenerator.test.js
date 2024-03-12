@@ -45,4 +45,22 @@ describe('Création d\'une équipe', () => {
         // restore console.log to its initial state
         consoleLogSpy.restore();
     });
+
+    it('vérifie le type de valeur entrée pour le nombre de joueurs par équipe', () => {
+        players = ['Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6'];
+        const expectedErrorMessage = "Veuillez entrer un nombre";
+        const generator = new TeamGenerator(players,"chaussette");
+        generator.generateTeams()
+
+        const teams = generator.getTeams();
+
+        expect(teams).to.be.an('array');
+        expect(teams).to.be.an('array').that.is.empty;
+        expect(consoleLogSpy.calledOnce).to.be.true;
+        expect(consoleLogSpy.calledWith(expectedErrorMessage)).to.be.true;
+
+        // restore console.log to its initial state
+        consoleLogSpy.restore();
+    });
+
 })
