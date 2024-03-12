@@ -46,6 +46,14 @@ class TournamentGenerator {
         }
     }
 
+    getTotalPlayers() {
+        let totalPlayers = 0;
+        this.teams.forEach(team => {
+            totalPlayers += team.players.length;
+        });
+        return totalPlayers;
+    }
+
   generateTournament() {
       this.generatePoules();
       this.simulatePoulesMatches();
