@@ -47,3 +47,15 @@ describe('Génération des Phases Finales', () => {
         expect(tournamentGenerator.finalStages).to.deep.equal([[]]);
     });
 });
+
+describe('Calcul du nombre total de joueurs', () => {
+    it('Devrait retourner le nombre total de joueurs dans le tournoi', () => {
+        const teams = [
+            { name: 'Équipe 1', players: ['Joueur 1', 'Joueur 2', 'Joueur 3', 'Joueur 4'] },
+            { name: 'Équipe 2', players: ['Joueur 5', 'Joueur 6', 'Joueur 7', 'Joueur 8'] },
+        ];
+        const tournamentGenerator = new TournamentGenerator('Nom du Tournoi', 'Type du Tournoi', teams);
+        const totalPlayers = tournamentGenerator.getTotalPlayers();
+        expect(totalPlayers).is.equal(8);
+    });
+});
